@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Mirror, { TabNavigator, StackNavigator } from './mirrorn';
-import codePush from 'react-native-code-push';
+import React, { Component } from 'react'
+import Mirror, { TabNavigator, StackNavigator } from './mirrorn'
+import codePush from 'react-native-code-push'
 
-let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL }
 
-import { View, Button, Text, TouchableOpacity } from 'react-native';
-import Screen from './components/Screen';
+import { View, Button, Text, TouchableOpacity } from 'react-native'
+import Screen from './components/Screen'
 
 const ScreenG = text =>
   class TextScreen extends Component {
@@ -14,9 +14,9 @@ const ScreenG = text =>
         <Screen>
           <Text>{text}</Text>
         </Screen>
-      );
+      )
     }
-  };
+  }
 
 const StackScreenG = (text, nav) => ({ navigation }) => (
   <Screen>
@@ -24,27 +24,27 @@ const StackScreenG = (text, nav) => ({ navigation }) => (
     <Button
       title={nav}
       onPress={() => {
-        navigation.navigate(nav, { name: 'Lucy' });
+        navigation.navigate(nav, { name: 'Lucy' })
       }}
     />
     <Button
       title="Back"
       onPress={() => {
-        navigation.goBack();
+        navigation.goBack()
       }}
     />
   </Screen>
-);
+)
 
 const Stack1 = StackNavigator({
   stackScreen1: { screen: StackScreenG('Go Next 2', 'stackScreen2') },
   stackScreen2: { screen: StackScreenG('Go Next 3', 'stackScreen3') },
   stackScreen3: { screen: StackScreenG('Go Next 1', 'stackScreen1') }
-});
+})
 Stack1.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarVisible: false
-};
+}
 
 const Tab1 = TabNavigator(
   {
@@ -61,14 +61,14 @@ const Tab1 = TabNavigator(
   {
     tabBarPosition: 'bottom'
   }
-);
+)
 
 class MyApp extends Component {
   onButtonPress() {
     codePush.sync({
       updateDialog: true,
       installMode: codePush.InstallMode.IMMEDIATE
-    });
+    })
   }
 
   render() {
@@ -81,8 +81,8 @@ class MyApp extends Component {
           <Text>Check for updates！</Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
-export default codePush(codePushOptions)(MyApp);
+export default codePush(codePushOptions)(MyApp)

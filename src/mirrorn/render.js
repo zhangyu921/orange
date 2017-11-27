@@ -1,33 +1,33 @@
-import React from 'react';
-import { AppRegistry } from 'react-native';
-import { connect, Provider } from 'react-redux';
-import { options } from './defaults';
-import { models } from './model';
-import { store, createStore, replaceReducer } from './store';
-import { generatorReduxNavigation } from './router';
+import React from 'react'
+import { AppRegistry } from 'react-native'
+import { connect, Provider } from 'react-redux'
+import { options } from './defaults'
+import { models } from './model'
+import { store, createStore, replaceReducer } from './store'
+import { generatorReduxNavigation } from './router'
 
-let started = false;
-let Root;
+let started = false
+let Root
 
 export default function render(name, component) {
-  const { initialState, middlewares } = options;
-  let ConnectedNavigator;
+  const { initialState, middlewares } = options
+  let ConnectedNavigator
 
   if (started) {
     // If app has rendered, do `store.replaceReducer` to update store.
-    replaceReducer(store, models);
+    replaceReducer(store, models)
 
     // Call `render` without arguments means *re-render*. Since store has updated,
     // `component` will automatically be updated, so no need to `ReactDOM.render` again.
     if (arguments.length === 0) {
-      return Root;
+      return Root
     }
   } else {
     ConnectedNavigator = connect(state => ({
       nav: state.nav
-    }))(generatorReduxNavigation(component));
+    }))(generatorReduxNavigation(component))
     // ------------
-    createStore(models, initialState, middlewares);
+    createStore(models, initialState, middlewares)
   }
 
   // Use named function get a proper displayName
@@ -36,12 +36,12 @@ export default function render(name, component) {
       <Provider store={store}>
         <ConnectedNavigator />
       </Provider>
-    );
-  };
+    )
+  }
 
-  started = true;
+  started = true
 
-  AppRegistry.registerComponent(name, () => Root);
+  AppRegistry.registerComponent(name, () => Root)
 
-  return Root;
+  return Root
 }
