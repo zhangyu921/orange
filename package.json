@@ -1,0 +1,43 @@
+{
+  "name": "orange",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "prop-types": "15.6.0",
+    "react": "16.0.0",
+    "react-native": "0.50.3",
+    "react-native-code-push": "5.2.0-beta",
+    "react-navigation": "1.0.0-beta.21",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.0.2",
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "4.12.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "7.5.1",
+    "eslint-plugin-react-native": "3.2.0",
+    "husky": "0.14.3",
+    "jest": "21.2.1",
+    "lint-staged": "5.0.0",
+    "prettier": "1.8.2",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
