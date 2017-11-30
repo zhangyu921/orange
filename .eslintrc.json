@@ -26,13 +26,14 @@
   "rules": {
     "no-unused-vars": 1,
     "react/prop-types": 1,
-    "react/display-name": 1,
+    "react/display-name": 0,
     "prettier/prettier": [
-      "error",
+      1,
       {
-        "singleQuote": true,
         "parser": "flow",
-        "semi": false
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "es5"
       }
     ]
   }
