@@ -30,7 +30,7 @@
     "prettier/prettier": [
       1,
       {
-        "parser": "flow",
+        "esproposal_decorators": true,
         "singleQuote": true,
         "semi": false,
         "trailingComma": "es5"
