@@ -17,7 +17,7 @@ export const options = {
 
 const historyModes = ['browser', 'hash', 'memory']
 
-export default function defaults(opts = {}) {
+export default function defaults (opts = {}) {
   const { historyMode, middlewares, addEffect } = opts
 
   if (historyMode && !~historyModes.indexOf(historyMode)) {
