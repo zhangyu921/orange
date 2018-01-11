@@ -23,7 +23,6 @@
     "redux": "3.7.2"
   },
   "devDependencies": {
-    "babel-eslint": "8.0.2",
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "husky": "0.14.3",
