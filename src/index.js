@@ -1,45 +1,48 @@
 import React, { Component } from 'react'
-import Mirror, { TabNavigator, StackNavigator } from './mirrorn'
+import { TabNavigator, StackNavigator } from './mirrorn'
 import codePush from 'react-native-code-push'
-
-let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL }
-
-import { View, Button, Text, TouchableOpacity } from 'react-native'
+import {
+    Button,
+    Text,
+    SafeAreaView
+} from 'react-native'
 import Screen from './components/Screen'
 
-const ScreenG = text =>
-  class TextScreen extends Component {
-    render() {
-      return (
-        <Screen>
-          <Text>{text}</Text>
-        </Screen>
-      )
-    }
-  }
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.MANUAL}
 
-const StackScreenG = (text, nav) => ({ navigation }) => (
+const ScreenG = text =>
+    class TextScreen extends Component {
+      render () {
+        return (
+          <Screen>
+            <Text>{text}</Text>
+          </Screen>
+        )
+      }
+    }
+
+const StackScreenG = (text, nav) => ({navigation}) => (
   <Screen>
     <Text>{text}</Text>
     <Button
       title={nav}
       onPress={() => {
-        navigation.navigate(nav, { name: 'Lucy' })
+        navigation.navigate(nav, {name: 'Lucy'})
       }}
-    />
+        />
     <Button
-      title="Back"
+      title='Back'
       onPress={() => {
         navigation.goBack()
       }}
-    />
+        />
   </Screen>
 )
 
 const Stack1 = StackNavigator({
-  stackScreen1: { screen: StackScreenG('Go Next 2', 'stackScreen2') },
-  stackScreen2: { screen: StackScreenG('Go Next 3', 'stackScreen3') },
-  stackScreen3: { screen: StackScreenG('Go Next 1', 'stackScreen1') }
+  stackScreen1: {screen: StackScreenG('Go Next 2', 'stackScreen2')},
+  stackScreen2: {screen: StackScreenG('Go Next 3', 'stackScreen3')},
+  stackScreen3: {screen: StackScreenG('Go Next 1', 'stackScreen1')}
 })
 Stack1.navigationOptions = {
   tabBarLabel: 'Home',
@@ -63,26 +66,30 @@ const Tab1 = TabNavigator(
   }
 )
 
-class MyApp extends Component {
-  onButtonPress() {
-    codePush.sync({
-      updateDialog: true,
-      installMode: codePush.InstallMode.IMMEDIATE
-    })
-  }
+// class MyApp extends Component {
+//   onButtonPress () {
+//     codePush.sync({
+//       updateDialog: true,
+//       installMode: codePush.InstallMode.IMMEDIATE
+//     })
+//   }
 
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <TouchableOpacity
-          style={{ justifyContent: 'center', alignItems: 'center' }}
-          onPress={this.onButtonPress}
-        >
-          <Text>Check for updates！</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-}
+//   render () {
+//     return (
+//       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+//         <TouchableOpacity
+//           style={{justifyContent: 'center', alignItems: 'center'}}
+//           onPress={this.onButtonPress}
+//                 >
+//           <Text>Check for updates！</Text>
+//         </TouchableOpacity>
+//       </View>
+//     )
+//   }
+// }
 
-export default codePush(codePushOptions)(MyApp)
+export default codePush(codePushOptions)(() => (
+  <SafeAreaView style={{flex: 1, backgroundColor: 'red'}}>
+    <Tab1 />
+  </SafeAreaView>
+))

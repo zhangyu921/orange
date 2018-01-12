@@ -2,7 +2,7 @@ import { resolveReducers, addActions } from './actions'
 
 export const models = []
 
-export default function model(m) {
+export default function model (m) {
   m = validateModel(m)
 
   const reducer = getReducer(
@@ -22,7 +22,7 @@ export default function model(m) {
   return _model
 }
 
-function validateModel(m = {}) {
+function validateModel (m = {}) {
   const { name, reducers, effects } = m
 
   const isObject = target =>
@@ -59,7 +59,7 @@ function validateModel(m = {}) {
 }
 
 // If initialState is not specified, then set it to null
-function getReducer(reducers, initialState = null) {
+function getReducer (reducers, initialState = null) {
   return (state = initialState, action) => {
     if (typeof reducers[action.type] === 'function') {
       return reducers[action.type](state, action.data)
@@ -68,7 +68,7 @@ function getReducer(reducers, initialState = null) {
   }
 }
 
-function filterReducers(reducers) {
+function filterReducers (reducers) {
   if (!reducers) {
     return reducers
   }

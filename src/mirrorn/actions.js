@@ -5,7 +5,7 @@ const SEP = '/'
 
 export const actions = {}
 
-export function addActions(modelName, reducers = {}, effects = {}) {
+export function addActions (modelName, reducers = {}, effects = {}) {
   if (Object.keys(reducers).length || Object.keys(effects).length) {
     actions[modelName] = actions[modelName] || {}
   }
@@ -32,18 +32,18 @@ export function addActions(modelName, reducers = {}, effects = {}) {
   })
 }
 
-export function resolveReducers(modelName, reducers = {}) {
+export function resolveReducers (modelName, reducers = {}) {
   return Object.keys(reducers).reduce((acc, cur) => {
     acc[`${modelName}${SEP}${cur}`] = reducers[cur]
     return acc
   }, {})
 }
 
-function each(obj, callback) {
+function each (obj, callback) {
   Object.keys(obj).forEach(callback)
 }
 
-function actionCreator(modelName, actionName) {
+function actionCreator (modelName, actionName) {
   return data =>
     dispatch({
       type: `${modelName}${SEP}${actionName}`,

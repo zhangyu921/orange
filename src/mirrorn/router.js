@@ -5,7 +5,7 @@ import { NavigationActions, addNavigationHelpers } from 'react-navigation'
 
 export let RootNavigator
 
-export function generatorReduxNavigation(component) {
+export function generatorReduxNavigation (component) {
   RootNavigator = component
   return class ReduxNavigation extends React.Component {
     static propTypes = {
@@ -13,7 +13,7 @@ export function generatorReduxNavigation(component) {
       nav: PropTypes.object.isRequired
     }
 
-    componentDidMount() {
+    componentDidMount () {
       if (BackHandler) {
         BackHandler.addEventListener('hardwareBackPress', this.onBackPress)
       } else {
@@ -21,7 +21,7 @@ export function generatorReduxNavigation(component) {
       }
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
       if (BackHandler) {
         BackHandler.removeEventListener('hardwareBackPress', this.onBackPress)
       } else {
@@ -38,7 +38,7 @@ export function generatorReduxNavigation(component) {
       return true
     }
 
-    render() {
+    render () {
       const { dispatch, nav } = this.props
       const navigation = addNavigationHelpers({
         dispatch,

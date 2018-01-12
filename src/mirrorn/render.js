@@ -9,7 +9,7 @@ import { generatorReduxNavigation } from './router'
 let started = false
 let Root
 
-export default function render(name, component) {
+export default function render (name, component) {
   const { initialState, middlewares } = options
   let ConnectedNavigator
 
@@ -31,7 +31,7 @@ export default function render(name, component) {
   }
 
   // Use named function get a proper displayName
-  Root = function Root() {
+  Root = function Root () {
     return (
       <Provider store={store}>
         <ConnectedNavigator />

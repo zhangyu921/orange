@@ -9,7 +9,7 @@ import { RootNavigator } from './router'
 
 export let store
 
-export function createStore(models, initialState, middlewares = []) {
+export function createStore (models, initialState, middlewares = []) {
   const middleware = applyMiddleware(...middlewares, createMiddleware())
 
   const enhancers = [middleware]
@@ -18,7 +18,7 @@ export function createStore(models, initialState, middlewares = []) {
 
   // Following line to exclude from coverage report:
   /* istanbul ignore next */
-  if (__DEV__) {
+  if (__DEV__) { // eslint-disable-line 
     // Redux devtools extension support.
     if (global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
       composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -33,12 +33,12 @@ export function createStore(models, initialState, middlewares = []) {
   return store
 }
 
-export function replaceReducer(store, models) {
+export function replaceReducer (store, models) {
   const reducer = createReducer(models)
   store.replaceReducer(reducer)
 }
 
-function createReducer(models) {
+function createReducer (models) {
   const reducers = models.reduce((acc, cur) => {
     acc[cur.name] = cur.reducer
     return acc
