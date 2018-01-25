@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
-  View,
-  StyleSheet
+    View,
+    StyleSheet
 } from 'react-native'
 
 export default class Screen extends Component {
@@ -17,9 +17,6 @@ export default class Screen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red'
-    // justifyContent: 'center',
-    // paddingTop: Platform.OS === 'ios' ? 20 : 0
-    // alignItems: 'center'
+    justifyContent: 'center'
   }
 })

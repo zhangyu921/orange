@@ -1,17 +1,18 @@
 import Mirror from '../../mirrorn'
-Mirror.model({
+
+export default Mirror.model({
   name: 'user',
   initialState: {
     userInfo: {},
-    userId: undefined,
+    userId: undefined
   },
   reducers: {
-    set(state, data) {
+    set (state, data) {
       return {
         ...state,
         userInfo: data,
-        userId: data.id || state.userId,
+        userId: data.id || state.userId
       }
-    },
-  },
+    }
+  }
 })
