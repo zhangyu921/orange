@@ -1,18 +1,36 @@
-import { StackNavigator, TabNavigator } from 'react-navigation'
-import { route as loginRoute } from './modules/login'
-import { route as indexRoute } from './modules/index'
+import { StackNavigator } from 'react-navigation'
+import { route as MainRoute } from './modules/Main'
+import { PasswordLogin } from './modules/login/screen'
 
-const MainTabNav = TabNavigator({
-  Index: {screen: indexRoute},
-  Settings: {screen: indexRoute}
-}, {
-  tabBarPosition: 'bottom',
-  headerLeft: null
-})
+import React from 'react'
+import { View, Button } from 'react-native'
+
+function Page ({navigation}) {
+  return (
+    <View style={{flex: 1, backgroundColor: 'violet'}}>
+      <Button
+        title={'Push Me'}
+        onPress={() => {
+          navigation.navigate('Func')
+        }}
+      />
+    </View>
+  )
+}
 
 export default StackNavigator({
-  Login: {screen: loginRoute},
-  Main: {screen: MainTabNav}
+  PasswordLogin: {
+    screen: PasswordLogin,
+    navigationOptions: {
+      title: '登录',
+      header: null,
+    }
+  },
+  Main: {
+    screen: MainRoute,
+  },
+  Func: {screen: Page}
 }, {
+  initialRouteName: 'PasswordLogin',
   headerMode: 'screen'
 })

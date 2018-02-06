@@ -5,7 +5,7 @@ import PasswordLogin from './screen/PasswordLogin'
 const route = StackNavigator({
   PasswordLogin: {screen: PasswordLogin}
 }, {
-  headerMode: 'none'
+  headerMode: 'screen'
 })
 
 export default route
